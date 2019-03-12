@@ -19,9 +19,9 @@ namespace OuterSpace
             planetList.Remove("Pluto");
             List<string> rockyPlanets = new List<string>(planetList.GetRange(0, 4).ToArray());
 
-            var spaceshipHasVisited = new Dictionary<string, List<string>>
+            var spaceshipHasVisited = new Dictionary<List<string>, List<string>>
             {
-                {"Ship Names", spaceships}
+                {planetList, spaceships}
             };
 
             //foreach (var (spacename, planets) in spaceshipHasVisited)
@@ -31,12 +31,16 @@ namespace OuterSpace
             //        Console.WriteLine($"{planet}: {spacename}");
             //    }
             //}
-            foreach (var planet in planetList)
+            foreach (var (planets, allships) in spaceshipHasVisited)
             {
-                Console.WriteLine($"{planet}:");
-                foreach (var ship in spaceships)
+                //Console.WriteLine($"{planet}:");
+                foreach (var planet in planets)
                 {
-                    Console.WriteLine(ship);
+                    Console.WriteLine($"{planet}:");
+                    foreach (var ship in allships)
+                    {
+                        Console.WriteLine(ship);
+                    }
                 }
             }
 
