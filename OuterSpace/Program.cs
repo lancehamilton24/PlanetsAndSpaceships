@@ -8,7 +8,6 @@ namespace OuterSpace
         static void Main(string[] args)
         {
             List<string> planetList = new List<string>() { "Mercury", "Mars" };
-            List<string> spaceships = new List<string>() { "Soul Plane", "Destroyer", "Almighty" };
             List<string> lastPlanets = new List<string>() { "Uranus", "Neptune" };
             planetList.Add("Jupiter");
             planetList.Add("Saturn");
@@ -19,35 +18,36 @@ namespace OuterSpace
             planetList.Remove("Pluto");
             List<string> rockyPlanets = new List<string>(planetList.GetRange(0, 4).ToArray());
 
-            var spaceshipHasVisited = new Dictionary<List<string>, List<string>>
+            var shipsThatVisitedMercury = new List<string>() { "Helios A", "Helios B" };
+            var shipsThatVisitedMars = new List<string>() { "ISEE-3" };
+            var shipsThatVisitedJupiter = new List<string>() { "WIND", "SOHO", "ACE" };
+            var shipsThatVisitedSaturn = new List<string>() { "Sterio A", "Ulysses" };
+            var shipsThatVisitedVenus = new List<string>() { "DSCVR" };
+            var shipsThatVisitedUranus = new List<string>() { "Pioneer 7", "Pioneer 8", "Pioneer 9" };
+            var shipsThatVisitedNeptune = new List<string>() { "Pioneer E" };
+
+            var planetExploration = new Dictionary<string, List<string>>
             {
-                {planetList, spaceships}
+                {"Mercury", shipsThatVisitedMercury},
+                {"Mars", shipsThatVisitedMars},
+                {"Jupiter", shipsThatVisitedJupiter},
+                {"Saturn", shipsThatVisitedSaturn},
+                {"Venus", shipsThatVisitedVenus},
+                {"Uranus", shipsThatVisitedUranus},
+                {"Neptune", shipsThatVisitedNeptune}
             };
 
-            //foreach (var (spacename, planets) in spaceshipHasVisited)
-            //{
-            //    foreach (var planet in planets)
-            //    {
-            //        Console.WriteLine($"{planet}: {spacename}");
-            //    }
-            //}
-            foreach (var (planets, allships) in spaceshipHasVisited)
+            foreach (var planet in planetList)
             {
-                //Console.WriteLine($"{planet}:");
-                foreach (var planet in planets)
+                foreach (var (visitedPlanet, ships) in planetExploration)
                 {
-                    Console.WriteLine($"{planet}:");
-                    foreach (var ship in allships)
+                    if(planet == visitedPlanet)
                     {
-                        Console.WriteLine(ship);
+                        foreach (string value in ships)
+                        Console.WriteLine($"{planet} was visited by: {value}");
                     }
                 }
             }
-
-            //foreach (var planet in rockyPlanets)
-            //{
-            //    Console.WriteLine(planet);
-            //}
             Console.ReadLine();
         }
     }
